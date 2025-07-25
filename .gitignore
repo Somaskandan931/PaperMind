@@ -1,0 +1,35 @@
+# Node modules for frontend
+/frontend/node_modules/
+/frontend/build/
+
+# Python environment
+/backend/__pycache__/
+/backend/env/
+/backend/venv/
+/backend/*.pyc
+/backend/*.pyo
+/backend/*.pyd
+
+# Python caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# VSCode settings
+.vscode/
+
+# Logs and databases
+*.log
+*.sqlite3
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+
+# Others
+*.egg-info/
+dist/
+build/
