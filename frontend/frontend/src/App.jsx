@@ -1,13 +1,13 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import SearchPage from './pages/SearchPage';
+import PaperMind from './components/PaperMind';
+import './App.css';
 
-const App = () => (
-  <Router>
-    <Routes>
-      <Route path="/" element={<SearchPage />} />
-    </Routes>
-  </Router>
-);
+function App() {
+  return (
+    <div className="App">
+      <PaperMind />
+    </div>
+  );
+}
 
 export default App;
