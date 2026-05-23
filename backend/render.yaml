@@ -6,7 +6,7 @@ services:
     plan: free
     healthCheckPath: /
     envVars:
-      - key: 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
+      - key: GROQ_API_KEY
         sync: false          # Set this manually in Render dashboard — never commit secrets
       - key: GROQ_MODEL
         value: llama-3.3-70b-versatile
