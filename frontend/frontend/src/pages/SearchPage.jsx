@@ -3,7 +3,7 @@ import SearchBar from '../components/SearchBar';
 import ResultsList from '../components/ResultsList';
 import Loader from '../components/Loader';
 import ErrorBanner from '../components/ErrorBanner';
-import { getRecommendations } from '../services/api';
+import { searchPapers } from '../services/api';
 
 const SearchPage = () => {
   const [papers, setPapers] = useState([]);
@@ -16,10 +16,11 @@ const SearchPage = () => {
     setPapers([]);
 
     try {
-      const response = await getRecommendations(query);
-      setPapers(response);
+      // searchPapers returns the full RecommendationResponse; extract .papers
+      const response = await searchPapers(query);
+      setPapers(response.papers ?? []);
     } catch (err) {
-      setError('Failed to fetch recommendations. Try again.');
+      setError(err.message || 'Failed to fetch recommendations. Try again.');
     } finally {
       setLoading(false);
     }

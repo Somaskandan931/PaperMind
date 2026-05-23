@@ -1,4 +1,4 @@
-import openai
+from openai import OpenAI
 import numpy as np
 import faiss
 import logging
@@ -14,7 +14,7 @@ class EmbeddingService :
     """Service for handling embeddings and vector search"""
 
     def __init__ ( self, api_key: str, model: str = "text-embedding-3-small" ) :
-        openai.api_key = api_key
+        self.client = OpenAI(api_key=api_key)
         self.model = model
         self.dimension = 1536 if "3-small" in model else 1536
         self.index = None
@@ -34,12 +34,12 @@ class EmbeddingService :
             if len( cleaned_text ) > 8000 :
                 cleaned_text = cleaned_text[:8000]
 
-            response = openai.Embedding.create(
+            response = self.client.embeddings.create(
                 input=cleaned_text,
                 model=self.model
             )
 
-            embedding = response['data'][0]['embedding']
+            embedding = response.data[0].embedding
 
             if use_cache :
                 self.embedding_cache[text] = embedding

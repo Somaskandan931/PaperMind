@@ -1,4 +1,4 @@
-import openai
+from openai import OpenAI
 import logging
 from typing import Optional
 
@@ -9,7 +9,7 @@ class ExplanationService :
     """Service for generating relevance explanations"""
 
     def __init__ ( self, api_key: str, model: str = "gpt-3.5-turbo" ) :
-        openai.api_key = api_key
+        self.client = OpenAI(api_key=api_key)
         self.model = model
 
     def explain_relevance ( self, query: str, paper: dict, max_retries: int = 2 ) -> Optional[str] :
@@ -19,7 +19,7 @@ class ExplanationService :
 
         for attempt in range( max_retries ) :
             try :
-                response = openai.ChatCompletion.create(
+                response = self.client.chat.completions.create(
                     model=self.model,
                     messages=[
                         {
@@ -32,7 +32,7 @@ class ExplanationService :
                     max_tokens=120
                 )
 
-                explanation = response.choices[0].message['content'].strip()
+                explanation = response.choices[0].message.content.strip()
                 return explanation
 
             except Exception as e :

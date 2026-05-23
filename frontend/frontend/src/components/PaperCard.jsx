@@ -10,6 +10,8 @@ const PaperCard = ({ paper, rank, onBookmark }) => {
     const badges = {
       'arxiv': { color: 'bg-red-100 text-red-800 border-red-200', label: 'arXiv' },
       'semantic_scholar': { color: 'bg-blue-100 text-blue-800 border-blue-200', label: 'Semantic Scholar' },
+      'openalex': { color: 'bg-emerald-100 text-emerald-800 border-emerald-200', label: 'OpenAlex' },
+      'crossref': { color: 'bg-orange-100 text-orange-800 border-orange-200', label: 'CrossRef' },
     };
     return badges[source] || { color: 'bg-gray-100 text-gray-800 border-gray-200', label: source };
   };
