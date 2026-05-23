@@ -33,3 +33,30 @@ Thumbs.db
 *.egg-info/
 dist/
 build/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+*.egg-info/
+
+# Environment
+.env
+.env.*
+
+# FAISS artefacts (in-memory only; not persisted between deploys)
+data/
+*.index
+*.metadata
+*.cache
+
+# Node
+node_modules/
+frontend/dist/
+frontend/build/
+
+# OS
+.DS_Store
+Thumbs.db

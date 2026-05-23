@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: papermind-backend
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false          # Set this manually in Render dashboard — never commit secrets
+      - key: GROQ_MODEL
+        value: llama-3.3-70b-versatile
+      - key: LOG_LEVEL
+        value: INFO

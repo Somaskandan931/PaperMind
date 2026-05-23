@@ -1,0 +1,15 @@
+[build]
+  base    = "frontend"
+  command = "npm run build"
+  publish = "dist"          # Vite outputs to dist/; change to "build" if using CRA
+
+[build.environment]
+  NODE_VERSION = "20"
+  # Set REACT_APP_API_URL in the Netlify dashboard → Site settings → Environment variables
+  # Example value: https://papermind-backend.onrender.com
+
+# SPA fallback — all routes serve index.html so React Router works
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 200
