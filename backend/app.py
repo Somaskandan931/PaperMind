@@ -28,8 +28,11 @@ GROQ_MODEL = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
 
 client = None
 if api_key:
-    client = Groq(api_key=api_key)
-    logger.info(f"Groq client initialised — model: {GROQ_MODEL}")
+    try:
+        client = Groq(api_key=api_key)
+        logger.info(f"Groq client initialised — model: {GROQ_MODEL}")
+    except Exception as e:
+        logger.error(f"Failed to initialise Groq client: {e}. LLM features will use fallback text.")
 else:
     logger.warning("GROQ_API_KEY not set — LLM features will use fallback text.")
 
